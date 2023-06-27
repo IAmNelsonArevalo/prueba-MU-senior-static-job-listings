@@ -39,18 +39,30 @@ export class HomeComponent implements OnInit {
         console.log(this.offers$);
     }
 
+    /**
+     * Fetches the offers from the API and updates the state using Redux.
+     */
     public getOffers() {
         this.homeService.getOffers().subscribe((offers: Array<Offer>) => {
             this.store.dispatch({type: "[Offers] Set Offers", payload: offers});
         });
     }
 
+    /**
+     * Filters the offers based on the specified item and index, and updates the state using Redux.
+     * @param item The item to filter by.
+     * @param index The index indicating the type of filter (0: role, 1: level, others: languages/tools).
+     */
     public findItem(item: string, index: number) {
         let offers: any = null;
-        this.filteredOffers$.subscribe((res) => {offers = res;});
+        this.filteredOffers$.subscribe((res) => {
+            offers = res;
+        });
 
         let tools: any = null;
-        this.tools$.subscribe((res) => {tools = res;});
+        this.tools$.subscribe((res) => {
+            tools = res;
+        });
         if (index === 0) {
             const existsTool = tools.find((tool: any) => item === tool.item);
             offers = offers.filter((offer: any) => offer.role === item);
@@ -60,7 +72,7 @@ export class HomeComponent implements OnInit {
                 type: "[Offers] Filter Offers By Role",
                 payload: offers,
             });
-            if(!existsTool) {
+            if (!existsTool) {
                 this.store.dispatch({
                     type: "[Offers] Set Tool",
                     payload: tools,
@@ -75,7 +87,7 @@ export class HomeComponent implements OnInit {
                 type: "[Offers] Filter Offers By Role",
                 payload: offers,
             });
-            if(!existsTool) {
+            if (!existsTool) {
                 this.store.dispatch({
                     type: "[Offers] Set Tool",
                     payload: tools,
@@ -106,13 +118,17 @@ export class HomeComponent implements OnInit {
                 });
 
                 if (existsTools || existsTools.length > 0) {
-                    const existsTool = tools.find((tool: any) => item === tool.item);
-                    tools = existsTool ? tools : [...tools, {item, type: "tools"}];
+                    const existsTool = tools.find(
+                        (tool: any) => item === tool.item,
+                    );
+                    tools = existsTool
+                        ? tools
+                        : [...tools, {item, type: "tools"}];
                     this.store.dispatch({
                         type: "[Offers] Filter Offers By Role",
                         payload: existsTools,
                     });
-                    if(!existsTool) {
+                    if (!existsTool) {
                         this.store.dispatch({
                             type: "[Offers] Set Tool",
                             payload: tools,
@@ -120,13 +136,17 @@ export class HomeComponent implements OnInit {
                     }
                 }
             } else {
-                const existsTool = tools.find((tool: any) => item === tool.item);
-                tools = existsTool ? tools : [...tools, {item, type: "languages"}];
+                const existsTool = tools.find(
+                    (tool: any) => item === tool.item,
+                );
+                tools = existsTool
+                    ? tools
+                    : [...tools, {item, type: "languages"}];
                 this.store.dispatch({
                     type: "[Offers] Filter Offers By Role",
                     payload: existsLanguages,
                 });
-                if(!existsTool) {
+                if (!existsTool) {
                     this.store.dispatch({
                         type: "[Offers] Set Tool",
                         payload: tools,
@@ -136,18 +156,26 @@ export class HomeComponent implements OnInit {
         }
     }
 
+    /**
+     * Deletes a tool from the tools list and updates the state using Redux.
+     * @param index The index of the tool to delete.
+     */
     public async deleteTool(index: number) {
         let offers: any = null;
-        this.offers$.subscribe((res) => {offers = res});
+        this.offers$.subscribe((res) => {
+            offers = res;
+        });
 
         let tools: any = null;
-        this.tools$.subscribe((res) => {tools = res});
+        this.tools$.subscribe((res) => {
+            tools = res;
+        });
 
         tools = tools.filter((item: any, ind: any) => {
-            if(ind !== index) {
+            if (ind !== index) {
                 return item;
             }
-        })
+        });
 
         this.store.dispatch({
             type: "[Offers] Set Tool",
@@ -156,29 +184,36 @@ export class HomeComponent implements OnInit {
 
         let newArray: any = [];
 
-        for(let i = 0; i < tools.length; i++) {
+        for (let i = 0; i < tools.length; i++) {
             offers.map((item: any) => {
-                if(tools[i].type === "role" && item.role === tools[i].item) {
+                if (tools[i].type === "role" && item.role === tools[i].item) {
                     newArray.push(item);
-                } else if(tools[i].type === "level" && item.role === tools[i].item) {
+                } else if (
+                    tools[i].type === "level" &&
+                    item.role === tools[i].item
+                ) {
                     newArray.push(item);
                 } else if (tools[i].type === "languages") {
-                    let itemOffers = item.languages.find((itemOffer: any) => itemOffer === tools[i].item);
+                    let itemOffers = item.languages.find(
+                        (itemOffer: any) => itemOffer === tools[i].item,
+                    );
 
-                    if(itemOffers) {
+                    if (itemOffers) {
                         newArray.push(item);
                     }
                 } else {
-                    let itemOffers = item.tools.find((itemOffer: any) => itemOffer === tools[i].item);
+                    let itemOffers = item.tools.find(
+                        (itemOffer: any) => itemOffer === tools[i].item,
+                    );
 
-                    if(itemOffers) {
+                    if (itemOffers) {
                         newArray.push(item);
                     }
                 }
-            })
+            });
         }
 
-        if(newArray.length > 0) {
+        if (newArray.length > 0) {
             this.store.dispatch({
                 type: "[Offers] Filter Offers By Role",
                 payload: newArray,
@@ -191,9 +226,15 @@ export class HomeComponent implements OnInit {
         }
     }
 
+    /**
+     * Clears the filters and restores the original offers list in the state using Redux.
+     */
+
     public clear() {
         let offers: any = null;
-        this.offers$.subscribe((res) => {offers = res});
+        this.offers$.subscribe((res) => {
+            offers = res;
+        });
 
         this.store.dispatch({
             type: "[Offers] Set Tool",

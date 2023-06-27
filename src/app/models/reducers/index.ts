@@ -25,12 +25,6 @@ const _offersReducer = createReducer(initialState,
     on(toolsByRole, (state: any, action: any) => {
         return {...state, tools: action.payload}
     })
-    // (builder: any) => {
-    //     builder.addCase(setOffers, (state: any, action: any) => {
-    //         console.log(state);
-    //         return {...state, offers: action.payload};
-    //     })
-    // }
 );
 
 export function appReducer(state: any, action: any) {

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import { Offer } from "src/app/models/interfaces/Offers.interfaces";
+import {Offer} from "src/app/models/interfaces/Offers.interfaces";
 
 @Component({
     selector: "app-card-offer-desktop",
@@ -19,7 +19,11 @@ export class CardOfferDesktopComponent implements OnInit {
     @Input() role: string = "";
     @Input() level: string = "";
     @Input() languages: Array<string> = [];
-    @Input() findItem: (item: string, index: number, offers: Array<Offer>) => void = (item: string, index: number, offers: Array<Offer>) => {};
+    @Input() findItem: (
+        item: string,
+        index: number,
+        offers: Array<Offer>,
+    ) => void = (item: string, index: number, offers: Array<Offer>) => {};
     @Input() offers: Array<Offer> = [];
     @Input() activeTools: any = [];
 
@@ -39,9 +43,14 @@ export class CardOfferDesktopComponent implements OnInit {
         ];
     }
 
+    /**
+     * Determines the CSS style for an active tool based on whether it exists in the `activeTools` array.
+     * @param {string} tool The tool to check for activation.
+     * @returns {string} The CSS style string to apply to the tool if it is active, or an empty string if it is not.
+     */
     public activeTool(tool: string): string {
-        return this.activeTools.find((item: any) => item.item === tool) ?
-                    'background: hsl(176, 34%, 60%); color: hsl(185, 58%, 96%);' :
-                    '';
+        return this.activeTools.find((item: any) => item.item === tool)
+            ? "background: hsl(176, 34%, 60%); color: hsl(185, 58%, 96%);"
+            : "";
     }
 }
