@@ -1,11 +1,15 @@
 header {
     @apply h-[150px] bg-[#5da5a4] bg-header-bg-desktop relative;
 
+    @media (max-width: 1023px) {
+        @apply bg-header-bg-mobile;
+    }
+
     .filter-container {
-        @apply h-[100px] bg-white w-[80%] mx-auto absolute left-0 right-0 bottom-[-64%] flex items-center p-[10px] rounded-md;
+        @apply h-[100px] bg-white w-[80%] mx-auto absolute left-0 right-0 bottom-[-33%] flex items-center p-[10px] rounded-md;
 
         @media (max-width: 1023px) {
-            @apply h-[200px];
+            @apply h-[200px] bottom-[-64%];
         }
 
         .tool-content {
