@@ -1,0 +1,41 @@
+<div
+    class="card"
+    [style]="new && featured ? 'border-left: 5px solid hsl(178, 27%, 51%)' : ''"
+>
+    <div class="row">
+        <div class="column">
+            <div class="details">
+                <div class="logo-image">
+                    <img [src]="logo" alt="Logo" />
+                </div>
+                <div class="info">
+                    <div class="company">
+                        <h6 class="company-title">{{ company }}</h6>
+                        <div class="new" *ngIf="new">
+                            <p>NEW!</p>
+                        </div>
+                        <div class="featured" *ngIf="featured">
+                            <p>FEATURED</p>
+                        </div>
+                    </div>
+                    <h3 class="position">{{ position }}</h3>
+                    <div class="less-info">
+                        <h5 class="days">{{ postedAt }}</h5>
+                        <p class="mx-[10px]">&middot;</p>
+                        <h5 class="contract">{{ contract }}</h5>
+                        <p class="mx-[10px]">&middot;</p>
+                        <h5 class="location">{{ location }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column filter-container">
+            <div 
+                *ngFor="let tool of finalTools; let i = index" 
+                [style]="activeTool(tool)" 
+                class="tool" (click)="findItem(tool, i, offers)">
+                <p>{{ tool }}</p>
+            </div>
+        </div>
+    </div>
+</div>
