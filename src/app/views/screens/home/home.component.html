@@ -1,0 +1,35 @@
+<div *ngIf="filteredOffers$ | async as offers">
+    <header *ngIf="tools$ | async as tools">
+        <div class="filter-container" *ngIf="tools.length > 0">
+            <div class="w-[80%] flex flex-wrap relative items-center">
+                <div class="flex items-center relative flex-wrap mr-[10px] tool-content" *ngFor="let tool of tools; let i = index">
+                    <div class="tool">
+                        <p>{{ tool.item }}</p>
+                    </div>
+                    <div class="close" (click)="deleteTool(i)">X</div>
+                </div>
+            </div>
+            <div class="flex justify-end w-[20%] pr-[20px] cursor-pointer text-filter-grayish-cyan underline" (click)="clear()">Clear</div>
+        </div>
+    </header>
+    <div  *ngIf="tools$ | async as tools" class="container" [style]="tools.length > 0 ? 'margin-top: 150px;' : ''">
+        <app-card-offer-desktop
+            *ngFor="let offer of offers"
+            [logo]="offer.logo"
+            [new]="offer.new"
+            [featured]="offer.featured"
+            [company]="offer.company"
+            [position]="offer.position"
+            [postedAt]="offer.postedAt"
+            [contract]="offer.contract"
+            [location]="offer.location"
+            [tools]="offer.tools"
+            [languages]="offer.languages"
+            [level]="offer.level"
+            [role]="offer.role"
+            [findItem]="findItem"
+            [offers]="offers"
+            [activeTools]="tools"
+        ></app-card-offer-desktop>
+    </div>
+</div>

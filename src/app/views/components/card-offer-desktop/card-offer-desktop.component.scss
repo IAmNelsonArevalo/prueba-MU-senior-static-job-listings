@@ -1,0 +1,101 @@
+.card {
+    @apply mt-[20px] bg-white rounded-md py-[20px] pl-[20px] shadow-lg shadow-[#d5eaed] pr-[20px];
+
+    @media (max-width: 1023px) {
+        @apply mt-[40px];
+    }
+
+    img {
+        @apply w-[50px];
+    }
+
+    .row {
+        @apply flex;
+
+        @media (max-width: 1023px) {
+            @apply flex-wrap;
+        }
+
+        .column {
+            @apply w-[50%];
+
+            @media (max-width: 1023px) {
+                @apply w-full;
+            }
+
+            .details {
+                @apply flex;
+
+                @media (max-width: 1023px) {
+                    @apply block;
+                }
+
+                .logo-image {
+                    @apply flex items-center;
+
+                    @media (max-width: 1023px) {
+                        @apply ml-0 mt-[-45px];
+                    }
+                }
+
+                .info {
+                    @apply ml-[15px];
+
+                    @media (max-width: 1023px) {
+                        @apply ml-0 mt-[10px];
+                    }
+
+                    .company {
+                        @apply flex items-center;
+
+                        .company-title {
+                            @apply text-filter-grayish-cyan text-[15px] leading-[15px] mr-[10px];
+                        }
+
+                        .new {
+                            @apply bg-cyan-bg pt-[4px] text-[13px] text-grayish-cyan flex items-center px-[8px] rounded-[20px] mr-[10px];
+                        }
+
+                        .featured {
+                            @apply bg-very-dark-grayish-cyan rounded-[20px] px-[8px] pt-[4px] text-[13px] text-grayish-cyan;
+                        }
+                    }
+
+                    .position {
+                        @apply text-[20px] mt-[5px];
+                    }
+
+                    .less-info {
+                        @apply flex;
+
+                        .days, .contract, .location {
+                            @apply text-[#9da1a0];
+                        }
+
+                        p {
+                            @apply text-[#9da1a0];
+                        }
+                    }
+                }
+            }
+        }
+
+        .filter-container {
+            @apply flex justify-end pr-[30px] items-center;
+
+            @media (max-width: 1023px) {
+                @apply justify-start border-t-[1px] border-solid border-t-[#cdcece] pt-[10px] flex-wrap;
+            }
+
+            .tool {
+                @apply bg-grayish-cyan text-filter-grayish-cyan py-[5px] px-[10px] rounded-md ml-[20px] cursor-pointer;
+
+                @media (max-width: 1023px) {
+                    @apply ml-0 mr-[5px] mt-[10px];
+                }
+            }
+        }
+
+        
+    }
+}
