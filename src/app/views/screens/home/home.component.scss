@@ -1,0 +1,41 @@
+header {
+    @apply h-[150px] bg-[#5da5a4] bg-header-bg-desktop relative;
+
+    .filter-container {
+        @apply h-[100px] bg-white w-[80%] mx-auto absolute left-0 right-0 bottom-[-64%] flex items-center p-[10px] rounded-md;
+
+        @media (max-width: 1023px) {
+            @apply h-[200px];
+        }
+
+        .tool-content {
+            @media (max-width: 1023px) {
+                @apply mt-2.5;
+            }
+        }
+
+        .tool {
+            @apply bg-grayish-cyan text-filter-grayish-cyan py-[5px] px-[10px] rounded-tl-[5px] rounded-bl-[5px] ml-[20px] cursor-pointer;
+
+            @media (max-width: 1023px) {
+                @apply ml-0;
+            }
+
+            button {
+                @apply bg-very-dark-grayish-cyan;
+            }
+        }
+
+        .close {
+            @apply bg-filter-grayish-cyan cursor-pointer text-grayish-cyan w-[30px] h-[34px] flex items-center justify-center rounded-tr-[5px] rounded-br-[5px];
+
+            &:hover {
+                @apply bg-very-dark-grayish-cyan cursor-pointer;
+            }
+        }
+    }
+}
+
+.container {
+    @apply w-[80%] mx-auto my-[50px];
+}
